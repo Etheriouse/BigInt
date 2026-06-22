@@ -5,18 +5,18 @@
 
 int i_create_test()
 {
-    bInt *x = new_int(8);
+    bInt *x = new_int(8, true);
     if(x->n_bytes != 8) return -1;
     free_int(&x);
 
-    x = new_int(0);
+    x = new_int(0, true);
     if(x->n_bytes != 0) return -1;
     free_int(&x);
     return 0;
 }
 int i_set_test()
 {
-    bInt *x = new_int(8);
+    bInt *x = new_int(8, true);
     if(x->n_bytes != 8) return -1;
     set_lvalue(x, 987818343504L);
     if(x->bytes[3] != 229) return -1;
@@ -45,7 +45,7 @@ int i_set_test()
 }
 int i_get_test()
 {
-    bInt *x = new_int(8);
+    bInt *x = new_int(8, true);
     set_value(x, 1843);
     if(get_int(x) != 1843) return -1;
 
@@ -63,7 +63,7 @@ int i_get_test()
 }
 int i_print_test()
 {
-    bInt *n = new_int(4);
+    bInt *n = new_int(4, true);
     set_value(n, 156);
     
     size_t size = 12 + 3 + n->n_bytes * 9;
@@ -78,7 +78,7 @@ int i_print_test()
 }
 int i_free_test()
 {
-    bInt *n = new_int(4);
+    bInt *n = new_int(4, true);
     free_int(&n);
     if(n != NULL) return -1;
     return 0;
@@ -86,18 +86,18 @@ int i_free_test()
 
 int ui_create_test()
 { 
-    bUInt *x = new_uint(8);
+    bInt *x = new_int(8, false);
     if(x->n_bytes != 8) return -1;
-    free_uint(&x);
+    free_int(&x);
 
-    x = new_uint(0);
+    x = new_int(0, false);
     if(x->n_bytes != 0) return -1;
-    free_uint(&x);
+    free_int(&x);
     return 0;
 }
 int ui_set_test()
 {
-    bUInt *x = new_uint(8);
+    bInt *x = new_int(8, false);
     if(x->n_bytes != 8) return -1;
     set_ulvalue(x, 987818343504L);
     if(x->bytes[3] != 229) return -1;
@@ -121,12 +121,12 @@ int ui_set_test()
     if(x->bytes[6] != 41) return -1;
     if(x->bytes[7] != 13) return -1;
 
-    free_uint(&x);
+    free_int(&x);
     return 0;
 }
 int ui_get_test()
 {
-    bUInt *x = new_uint(8);
+    bInt *x = new_int(8, false);
     set_uvalue(x, 1843);
     if(get_uint(x) != 1843) return -1;
 
@@ -139,28 +139,28 @@ int ui_get_test()
     set_uvalue(x, -1);
     if(get_uint(x) != 0xFFFFFFFF) return -1;
 
-    free_uint(&x);
+    free_int(&x);
     return 0;
 }
 int ui_print_test()
 {
-    bUInt *n = new_uint(4);
+    bInt *n = new_int(4, false);
     set_uvalue(n, 156);
     
     size_t size = 12 + 3 + n->n_bytes * 9;
     char buffer[size];
-    __print_bit_ui(n, buffer, size);
+    __print_bit_i(n, buffer, size);
 
     const char *att_res = "32bit number:\n00000000 00000000 00000000 10011100 ";
     if(strcmp(buffer, att_res) != 0) return -1;
 
-    free_uint(&n);
+    free_int(&n);
     return 0;
 }
 int ui_free_test()
 {
-    bUInt *n = new_uint(4);
-    free_uint(&n);
+     bInt *n = new_int(4, false);
+    free_int(&n);
     if(n != NULL) return -1;
     return 0;
 }

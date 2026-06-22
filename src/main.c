@@ -27,10 +27,10 @@ int cmpint(void *a, void *b)
 
 int main(int argc, char const *argv[])
 {
-    bInt *eheh = new_int(4);
-    set_value(eheh, -2459);
-    print_bit_i(eheh);
-    print_dec_i(eheh);
-    free_int(&eheh);
+    main_test();
+
+    bInt *a = new_int(2, true);
+    bInt *b = new_int(2, true);
+    
     return 0;
 }

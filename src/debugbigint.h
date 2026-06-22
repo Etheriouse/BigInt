@@ -5,10 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void __print_bit_ui(bUInt *n, char *buffer, size_t buffer_s);
 void __print_bit_i(bInt *n, char *buffer, size_t buffer_s);
-
-void __print_dec_ui(bUInt *n, char *buffer, size_t buffer_s);
-void __print_dec_i(bInt *n, char *buffer, size_t buffer_s);
 
 #endif
