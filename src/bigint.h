@@ -43,6 +43,12 @@ void free_int(bInt **n);
 void print_bit_i(bInt *n);
 
 /**
+ * @brief Prints the decimal representation of the bInt to the standard output.
+ * @param n Pointer to the signed integer to display.
+ */
+void print_dec_i(bInt *n);
+
+/**
  * @brief Stores a standard integer value into the bInt structure.
  * @param n Pointer to the destination signed integer.
  * @param value The standard 32-bit int value to assign.
@@ -88,6 +94,12 @@ void free_uint(bUInt **n);
  * @param n Pointer to the unsigned integer to display.
  */
 void print_bit_ui(bUInt *n);
+
+/**
+ * @brief Prints the decimal representation of the bInt to the standard output.
+ * @param n Pointer to the unsigned integer to display.
+ */
+void print_dec_ui(bUInt *n);
 
 /**
  * @brief Stores a standard unsigned integer value into the bUInt structure.

@@ -16,7 +16,8 @@ static inline void set_0_bit(unsigned char *c, unsigned int pos)
     *c &= ~(1 << pos);
 }
 
-static inline char bin2dec(unsigned char digit) {
+static inline char bin2dec(unsigned char digit)
+{
     switch (digit)
     {
     case 0x0:
@@ -44,8 +45,20 @@ static inline char bin2dec(unsigned char digit) {
     }
 }
 
-unsigned char shift_array(unsigned char *bytes, size_t size);
-unsigned char shift_linked_list(linked_list *l_dec);
-unsigned int __double_dabble(unsigned char *bytes, size_t nb_bytes, linked_list *l_dec);
+static inline void cmp2(unsigned char *bytes, size_t n_bytes)
+{
+    unsigned char value;
+    for (size_t i = 0; i < n_bytes; i++)
+    {
+        bytes[i] = ~bytes[i];
+    }
+    unsigned int carry = 1;
+    for (unsigned int i = n_bytes-1; i >=0 && carry; i++)
+    {
+        unsigned int res = bytes[i] + carry;
+        bytes[i] = res & 0xFF;
+        carry = res >> 8; // Retenue pour l'octet suivant
+    }
+}
 
 #endif

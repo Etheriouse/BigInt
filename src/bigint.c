@@ -67,13 +67,17 @@ void print_bit_i(bInt *n)
 
 void print_dec_i(bInt *n)
 {
+    int neg = (n->bytes[0] & 0x80) != 0;
+    if(neg) {
+        cmp2(n->bytes, n->n_bytes);
+    }
     linked_list *l_dec = create_list();
     unsigned int length = __double_dabble(n->bytes, n->n_bytes, l_dec);
     link_node *current = *l_dec;
 
-    char str[length*2];
+    char str[(length*2)+(neg?1:0)];
     memset(str, 0, sizeof(str));
-
+    
     while(current != null) {
         unsigned char first_digit = *((unsigned char *)current->data) & 0x0F;
         unsigned char snd_digit = (*((unsigned char *)current->data) >> 4) & 0x0F;
@@ -85,7 +89,11 @@ void print_dec_i(bInt *n)
         str[1] = _1;
         current = current->next;
     }
-
+    if(neg) {
+        memmove(&str[1], &str[0], strlen(str) + 1);
+        str[0] = '-';
+        cmp2(n->bytes, n->n_bytes);
+    }
     free_list(l_dec, free_char_linked_list_dd);
     printf("%s\n", str);
 }
