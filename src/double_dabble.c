@@ -40,7 +40,7 @@ unsigned int __double_dabble(unsigned char *bytes, size_t nb_bytes, linked_list 
     unsigned int len = 1;
     if (*l_dec == null)
     {
-        push(l_dec, malloc(sizeof(unsigned char)));
+        push(l_dec, calloc(1, sizeof(unsigned char)));
     }
     for (size_t i = 0; i < nb_bytes * 8; i++)
     {

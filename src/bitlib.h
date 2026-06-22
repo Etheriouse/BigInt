@@ -47,15 +47,14 @@ static inline char bin2dec(unsigned char digit)
 
 static inline void cmp2(unsigned char *bytes, size_t n_bytes)
 {
-    unsigned char value;
     for (size_t i = 0; i < n_bytes; i++)
     {
         bytes[i] = ~bytes[i];
     }
-    unsigned int carry = 1;
-    for (unsigned int i = n_bytes-1; i >=0 && carry; i++)
+    unsigned int carry = 1, res;
+    for (int i = n_bytes-1; i >=0 && carry; i--)
     {
-        unsigned int res = bytes[i] + carry;
+        res = bytes[i] + carry;
         bytes[i] = res & 0xFF;
         carry = res >> 8; // Retenue pour l'octet suivant
     }

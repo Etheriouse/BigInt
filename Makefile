@@ -24,6 +24,5 @@ clean:
 	rm -rf bin
 	rm -f $(MAIN)
 
-leaks:
-	codesign --force --options runtime --sign - --entitlements entitlements.plist ./$(MAIN)
-	leaks --atExit -- ./$(MAIN)
+leaks: build
+	valgrind ./bin/$(MAIN)
