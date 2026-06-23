@@ -13,16 +13,6 @@ void free_char_linked_list_dd(void *element)
     free(element);
 }
 
-unsigned char *clone_arr(unsigned char *bytes, size_t n_bytes)
-{
-    unsigned char *c = (unsigned char *)malloc(sizeof(unsigned char *) * n_bytes);
-    for (size_t i = 0; i < n_bytes; i++)
-    {
-        c[i] = bytes[i];
-    }
-    return c;
-}
-
 bInt *new_int(unsigned int size, bool _signed)
 {
     bInt *tmp = (bInt *)malloc(sizeof(bInt));
